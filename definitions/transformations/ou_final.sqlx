@@ -1,0 +1,11 @@
+config {
+  type: "table"
+}
+
+-- select *
+-- from 
+--   ${ref("table_name")} / schema.table_name
+-- read more about ref() in the documentation tab -->
+
+
+select papers.PaperId as id,papertitle,Year as p_year,papers.citationcount,Doi as doi,abstract.Abstract as abstract,journals.NormalizedName as journame,papers.ConferenceSeriesId	as conferenceseriesid,conferenceseries.DisplayName as confseries,conferenceseries.NormalizedName as confseriesname,conferenceinstances.location as confplace,conferenceinstances.NormalizedName as confname,paperrefernces.paperreferenceid,authors.authors,paperurls.paperurl_and_language_col from ${ref("ou_papers")} as papers left join ${ref("ou_abstract")} as abstract on papers.PaperId=abstract.PaperId left join ${ref("ou_journals")} journals on papers.JournalId=journals.JournalId left join ${ref("ou_conferenceseries")} as conferenceseries on papers.ConferenceSeriesId=conferenceseries.ConferenceSeriesId left join ${ref("ou_conferenceinstances")} as conferenceinstances on papers.ConferenceInstanceId=conferenceinstances.ConferenceInstanceId left join ${ref("ou_staging2")} as paperrefernces on papers.PaperId=paperrefernces.PaperId left join ${ref("ou_staging3")} as authors on papers.PaperId=authors.paperid left join ${ref("ou_staging4")} as paperurls on papers.PaperId=paperurls.PaperId

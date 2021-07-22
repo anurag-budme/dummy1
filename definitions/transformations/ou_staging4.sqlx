@@ -1,0 +1,9 @@
+config {
+  type: "table"
+}
+
+-- select *
+-- from 
+--   ${ref("table_name")} / schema.table_name
+-- read more about ref() in the documentation tab -->
+SELECT PaperId as paperid , ARRAY_AGG(STRUCT(SourceUrl, LanguageCode)) as paperurl_and_language_col FROM ${ref("ou_paperurls")} group by PaperId 

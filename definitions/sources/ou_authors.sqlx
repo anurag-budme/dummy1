@@ -1,0 +1,11 @@
+config {
+  type: "table"
+}
+
+
+SELECT * FROM `springer-nature-analytics.microsoft_academic_graph.mag_author_from_azure_updated`
+
+-- select *
+-- from 
+--   ${ref("table_name")} / schema.table_name
+-- read more about ref() in the documentation tab -->

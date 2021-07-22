@@ -1,0 +1,10 @@
+config {
+  type: "table"
+}
+
+-- select *
+-- from 
+--   ${ref("table_name")} / schema.table_name
+-- read more about ref() in the documentation tab -->
+
+select papers.PaperId as paperid,ARRAY_AGG(STRUCT(affiliations.Iso3166Code as country,affiliations.DisplayName as affiliation,authors.NormalizedName as author_name,affiliations.Gridid as gridid,paperauthoraffiliations.AffiliationId as affiliationid)) as authors from ${ref("ou_papers")} as papers left join ${ref("ou_paperauthoraffiliations")} as paperauthoraffiliations on papers.PaperId=paperauthoraffiliations.PaperId left join ${ref("ou_affiliations")} as affiliations on paperauthoraffiliations.AffiliationId=affiliations.AffiliationId left join ${ref("ou_authors")} as authors on authors.AuthorId=paperauthoraffiliations.AuthorId group by paperid

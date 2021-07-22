@@ -1,0 +1,10 @@
+config {
+  type: "table"
+}
+
+-- select *
+-- from 
+--   ${ref("table_name")} / schema.table_name
+-- read more about ref() in the documentation tab -->
+
+SELECT * FROM `springer-nature-analytics.microsoft_academic_graph.mag_abstractstext_from_azure_updated`
